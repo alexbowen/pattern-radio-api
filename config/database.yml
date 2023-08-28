@@ -82,6 +82,6 @@ test:
 #
 production:
   <<: *default
-  database: Pattern_radio_production
+  database: d5avihjmv072hp
   username: Project
   password: <%= ENV["PROJECT_DATABASE_PASSWORD"] %>
