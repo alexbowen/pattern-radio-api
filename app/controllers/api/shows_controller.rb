@@ -1,11 +1,14 @@
 class Api::ShowsController < ApplicationController
   def index
-    shows = Show.limit(params[:limit]).offset(params[:offset])
-
     if params[:filters].present? && params[:filters].length > 0
+      shows = Show.order("created_time DESC").reverse
       shows = shows.select { |show| show[:tags].any?{|tag| params[:filters].split(",").any? { |filter| filter.in?(tag["name"].downcase) } } }
+      count = shows.length
+    else
+      shows = Show.order("created_time DESC").limit(params[:limit]).offset(params[:offset]).reverse
+      count = Show.count
     end
 
-    render json: shows
+    render json: { count: count, shows: shows }
   end
 end
