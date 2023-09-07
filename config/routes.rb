@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     # end
 
     resources :shows, only: %i[index]
-    resources :search, only: %i[index]
+    resources :posts, only: %i[index]
+
+    namespace :search do
+      resources :shows, only: %i[index]
+      resources :posts, only: %i[index]
+    end
   end
 end

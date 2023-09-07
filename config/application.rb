@@ -38,7 +38,7 @@ module Project
               headers: :any,
               methods: :get
           # Only allow a request for a specific host
-          resource '/api/*',
+          resource '/api/*/**',
               headers: :any,
               methods: :get
       end

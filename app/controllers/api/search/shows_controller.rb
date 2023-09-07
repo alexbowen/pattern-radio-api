@@ -1,4 +1,4 @@
-class Api::SearchController < ApplicationController
+class Api::Search::ShowsController < ApplicationController
   def index
     if params[:q].length > 0
       shows1 = Show.search(params[:q]).order("created_time DESC").reverse
@@ -13,6 +13,6 @@ class Api::SearchController < ApplicationController
       count = shows.length
     end
 
-    render json: { count: count, shows: shows }
+    render json: { count: count, items: shows }
   end
 end
