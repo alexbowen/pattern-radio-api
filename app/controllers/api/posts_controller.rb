@@ -5,7 +5,7 @@ class Api::PostsController < ApplicationController
       count = shows.length
       shows = shows.slice(params[:offset].to_i, params[:limit].to_i)
     else
-      posts = Post.order("published_at DESC").limit(params[:limit]).offset(params[:offset])
+      posts = Post.limit(params[:limit]).offset(params[:offset])
       count = Post.count
     end
 
