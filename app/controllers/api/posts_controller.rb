@@ -1,9 +1,9 @@
 class Api::PostsController < ApplicationController
   def index
     if params[:filters].present? && params[:filters].length > 0
-      shows = Show.select { |show| show[:tags].any?{|tag| params[:filters].split(",").any? { |filter| filter.in?(tag["name"].downcase) } } }
-      count = shows.length
-      shows = shows.slice(params[:offset].to_i, params[:limit].to_i)
+      posts = Post.select { |post| post[:tags].any?{|tag| params[:filters].split(",").any? { |filter| filter.in?(tag.downcase) } } }
+      count = posts.length
+      posts = posts.slice(params[:offset].to_i, params[:limit].to_i)
     else
       posts = Post.limit(params[:limit]).offset(params[:offset])
       count = Post.count
